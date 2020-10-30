@@ -88,10 +88,17 @@ public class MonitorServiceImpl implements MonitorService {
         }
     }
 
+    /**
+     * 进行监控配置信息的加载操作
+     *
+     * @throws IOException IO异常信息
+     */
     @PostConstruct
     private void loadData() throws IOException {
+        // 从本地磁盘中加载监控配置信息
         String content = MixAll.file2String(getConsumerMonitorConfigDataPath());
         if (content == null) {
+            // 从备用地址中获取监控配置信息
             content = MixAll.file2String(getConsumerMonitorConfigDataPathBackUp());
         }
         if (content == null) {
