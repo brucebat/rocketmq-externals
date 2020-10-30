@@ -42,7 +42,9 @@ public class MonitorServiceImpl implements MonitorService {
 
     @Override
     public boolean createOrUpdateConsumerMonitor(String name, ConsumerMonitorConfig config) {
-        configMap.put(name, config);// todo if write map success but write file fail
+        // 这里使用的是内存加磁盘的方式进行监控配置存储，这里是否将配置信息的存储更改到MySQL中
+        // todo if write map success but write file fail
+        configMap.put(name, config);
         writeToFile(getConsumerMonitorConfigDataPath(), configMap);
         return true;
     }

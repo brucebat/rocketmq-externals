@@ -42,7 +42,8 @@ public class MonitorTask {
         for (Map.Entry<String, ConsumerMonitorConfig> configEntry : monitorService.queryConsumerMonitorConfig().entrySet()) {
             GroupConsumeInfo consumeInfo = consumerService.queryGroup(configEntry.getKey());
             if (consumeInfo.getCount() < configEntry.getValue().getMinCount() || consumeInfo.getDiffTotal() > configEntry.getValue().getMaxDiffTotal()) {
-                logger.info("op=look consumeInfo {}", JsonUtil.obj2String(consumeInfo)); // notify the alert system
+                logger.info("op=look consumeInfo {}", JsonUtil.obj2String(consumeInfo));
+                // notify the alert system
             }
         }
     }
